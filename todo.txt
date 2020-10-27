@@ -1,0 +1,18 @@
+1.add event handler (add items)
+2. get input values
+3. add new item to our data structure
+4. add new item to ui
+5. calc budget
+6. update ui
+
+Modules
+--ui module 
+    get vakues'=
+    update ui
+    add new item to ui
+--data module
+    add to data struct
+    calc budget
+--controller module
+    event handler 
+    link bw two modules
