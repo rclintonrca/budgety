@@ -56,7 +56,7 @@ var UIController = (function () {
         inputDesc: '.add__description',
         inputValue: '.add__value',
         inputBtn: '.add__btn',
-    }
+    };
 
     return {
         getInput: function () {
@@ -67,9 +67,9 @@ var UIController = (function () {
             };
         },
         getDOMstrings: function () {
-            return DOMStrings
+            return DOMStrings;
         }
-    }
+    };
 })();
 
 var controller = (function (budgetCtrl, UICtrl) {
@@ -105,10 +105,10 @@ var controller = (function (budgetCtrl, UICtrl) {
 };
     return {
         init: function () {
-            console.log("starting app...")
-            setupEventListeners()
+            console.log("starting app...");
+            setupEventListeners();
         }
-    }
+    };
 
 })(budgetController, UIController);
 
