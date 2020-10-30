@@ -1,5 +1,27 @@
 var budgetController = (function () {
-    /// 
+    var Expense = function (id, description, value) {
+        this.id = is;
+        this.description = description;
+        this.value = value;
+    };
+
+    var Income = function (id, description, value) {
+        this.id = is;
+        this.description = description;
+        this.value = value;
+    };
+
+    var data = {
+        allItems = {
+            exp: [],
+            inc: []
+        },
+        totals = {
+            exp: 0,
+            inc: 0
+        }
+    }
+
 })();
 
 
@@ -42,6 +64,7 @@ var controller = (function (budgetCtrl, UICtrl) {
     var ctrlAddItem = function () {
         // 1. get input data
         var input = UICtrl.getInput();
+        console.log(input);
     };
 
 
@@ -57,13 +80,13 @@ var controller = (function (budgetCtrl, UICtrl) {
 
     // to make public we return it in an obj
     return {
-        init: function() {
+        init: function () {
             console.log("starting app...")
             setupEventListeners()
         }
     }
-    
-}) (budgetController, UIController);
+
+})(budgetController, UIController);
 
 
 
