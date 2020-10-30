@@ -1,12 +1,12 @@
 var budgetController = (function () {
     var Expense = function (id, description, value) {
-        this.id = is;
+        this.id = id;
         this.description = description;
         this.value = value;
     };
 
     var Income = function (id, description, value) {
-        this.id = is;
+        this.id = id;
         this.description = description;
         this.value = value;
     };
@@ -19,6 +19,28 @@ var budgetController = (function () {
         totals: {
             exp: 0,
             inc: 0
+        }
+    };
+
+    return {
+        addItem: function(type, desc, val) {
+            var newItem;
+            //create id
+            // (age >= 21) ? "Beer" : "Juice";
+            var ID =  (data.allItems[type].length === 0) ? 1 : data.allItems[type][data.allItems[type].length - 1].id + 1;
+
+            //create new item
+            if (type === 'exp') {
+                newItem = new Expense(ID, desc, val);
+            } else if (type ==='inc') {
+                newItem = new Income(ID, desc, val)
+            }
+
+            //push into data struct
+            data.allItems[type].push(newItem);
+
+            // return element
+            return newItem;
         }
     };
 
@@ -65,7 +87,11 @@ var controller = (function (budgetCtrl, UICtrl) {
         // 1. get input data
         var input = UICtrl.getInput();
         console.log(input);
-    };
+
+    var x = budgetCtrl.addItem(input.type, input.description, input.value);
+    console.log(x);
+
+    
 
 
 
@@ -79,6 +105,8 @@ var controller = (function (budgetCtrl, UICtrl) {
     // 5. display budget in ui
 
     // to make public we return it in an obj
+
+};
     return {
         init: function () {
             console.log("starting app...")
