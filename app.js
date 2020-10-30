@@ -26,14 +26,13 @@ var budgetController = (function () {
         addItem: function(type, desc, val) {
             var newItem;
             //create id
-            // (age >= 21) ? "Beer" : "Juice";
             var ID =  (data.allItems[type].length === 0) ? 1 : data.allItems[type][data.allItems[type].length - 1].id + 1;
 
             //create new item
             if (type === 'exp') {
                 newItem = new Expense(ID, desc, val);
             } else if (type ==='inc') {
-                newItem = new Income(ID, desc, val)
+                newItem = new Income(ID, desc, val);
             }
 
             //push into data struct
@@ -41,6 +40,9 @@ var budgetController = (function () {
 
             // return element
             return newItem;
+        },
+        testing: function() { // remove this later, this is only to see the private data structures.
+            console.log(data);
         }
     };
 
@@ -86,17 +88,11 @@ var controller = (function (budgetCtrl, UICtrl) {
     var ctrlAddItem = function () {
         // 1. get input data
         var input = UICtrl.getInput();
-        console.log(input);
-
-    var x = budgetCtrl.addItem(input.type, input.description, input.value);
-    console.log(x);
-
-    
-
-
-
+        // console.log(input);
 
     // 2. add data to budget controller
+    var newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+    // console.log(newItem);
 
     // 3. add new item to ui
 
