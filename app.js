@@ -12,15 +12,15 @@ var budgetController = (function () {
     };
 
     var data = {
-        allItems = {
+        allItems: {
             exp: [],
             inc: []
         },
-        totals = {
+        totals: {
             exp: 0,
             inc: 0
         }
-    }
+    };
 
 })();
 
