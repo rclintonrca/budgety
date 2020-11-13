@@ -72,19 +72,18 @@ var UIController = (function () {
             // 1. create html string with placeholder text
             var html;
             if (type === 'inc') {
-                listElement = DOMStrings.incomeList
+                listElement = DOMStrings.incomeList;
                 html = '<div class="item clearfix" id="income-%ID%"><div class="item__description">%DESC%</div><div class="right clearfix"><div class="item__value">+ %VALUE%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             } else if (type === 'exp') {
-                listElement = DOMStrings.expenseList
+                listElement = DOMStrings.expenseList;
                 html = '<div class="item clearfix" id="expense-%ID%"><div class="item__description">%DESC%</div><div class="right clearfix"><div class="item__value">- %VALUE%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
             }
             // 2. replace plaxeholder with obj text
-            var newHtml = html.replace("%ID%", obj.id).replace("%VALUE%", obj.value).replace("%DESC%", obj.description)
+            var newHtml = html.replace("%ID%", obj.id).replace("%VALUE%", obj.value).replace("%DESC%", obj.description);
             // 3. insert html into DOM
-            document.querySelector(listElement).insertAdjacentHTML('beforebegin', newHtml)
-            
+            document.querySelector(listElement).insertAdjacentHTML('beforebegin', newHtml);
 
-            return
+            return;
         },
         getDOMstrings: function () {
             return DOMStrings;
