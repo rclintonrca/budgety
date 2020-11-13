@@ -23,15 +23,15 @@ var budgetController = (function () {
     };
 
     return {
-        addItem: function(type, desc, val) {
+        addItem: function (type, desc, val) {
             var newItem;
             //create id
-            var ID =  (data.allItems[type].length === 0) ? 1 : data.allItems[type][data.allItems[type].length - 1].id + 1;
+            var ID = (data.allItems[type].length === 0) ? 1 : data.allItems[type][data.allItems[type].length - 1].id + 1;
 
             //create new item
             if (type === 'exp') {
                 newItem = new Expense(ID, desc, val);
-            } else if (type ==='inc') {
+            } else if (type === 'inc') {
                 newItem = new Income(ID, desc, val);
             }
 
@@ -41,7 +41,7 @@ var budgetController = (function () {
             // return element
             return newItem;
         },
-        testing: function() { // remove this later, this is only to see the private data structures.
+        testing: function () { // remove this later, this is only to see the private data structures.
             console.log(data);
         }
     };
@@ -56,6 +56,8 @@ var UIController = (function () {
         inputDesc: '.add__description',
         inputValue: '.add__value',
         inputBtn: '.add__btn',
+        incomeList: '.income__list',
+        expenseList: '.expenses__list'
     };
 
     return {
@@ -65,6 +67,23 @@ var UIController = (function () {
                 description: document.querySelector(DOMStrings.inputDesc).value,
                 value: document.querySelector(DOMStrings.inputValue).value,
             };
+        },
+        addListItem: function (obj, type) {
+            // 1. create html string with placeholder text
+            var html;
+            if (type === 'inc') {
+                listElement = DOMStrings.incomeList;
+                html = '<div class="item clearfix" id="income-%ID%"><div class="item__description">%DESC%</div><div class="right clearfix"><div class="item__value">+ %VALUE%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            } else if (type === 'exp') {
+                listElement = DOMStrings.expenseList;
+                html = '<div class="item clearfix" id="expense-%ID%"><div class="item__description">%DESC%</div><div class="right clearfix"><div class="item__value">- %VALUE%</div><div class="item__percentage">21%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            }
+            // 2. replace plaxeholder with obj text
+            var newHtml = html.replace("%ID%", obj.id).replace("%VALUE%", obj.value).replace("%DESC%", obj.description);
+            // 3. insert html into DOM
+            document.querySelector(listElement).insertAdjacentHTML('beforebegin', newHtml);
+
+            return;
         },
         getDOMstrings: function () {
             return DOMStrings;
@@ -90,19 +109,19 @@ var controller = (function (budgetCtrl, UICtrl) {
         var input = UICtrl.getInput();
         // console.log(input);
 
-    // 2. add data to budget controller
-    var newItem = budgetCtrl.addItem(input.type, input.description, input.value);
-    // console.log(newItem);
+        // 2. add data to budget controller
+        var newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+        // console.log(newItem);
 
-    // 3. add new item to ui
+        // 3. add new item to ui
+        UICtrl.addListItem(newItem, input.type);
+        // 4. calc new budget
 
-    // 4. calc new budget
+        // 5. display budget in ui
 
-    // 5. display budget in ui
+        // to make public we return it in an obj
 
-    // to make public we return it in an obj
-
-};
+    };
     return {
         init: function () {
             console.log("starting app...");
