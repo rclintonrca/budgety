@@ -88,11 +88,11 @@ var UIController = (function () {
         getDOMstrings: function () {
             return DOMStrings;
         },
-        clearFields: function(){
+        clearFields: function () {
             var fields = document.querySelectorAll(DOMStrings.inputDesc + ',' + DOMStrings.inputValue);
-            var fieldsArr = Array.prototype.slice.call(fields)
-            fieldsArr.forEach(function(currValue, indexNum, arr) {
-                currValue.value='';
+            var fieldsArr = Array.prototype.slice.call(fields);
+            fieldsArr.forEach(function (currValue, indexNum, arr) {
+                currValue.value = '';
             });
             fieldsArr[0].focus();
         }
