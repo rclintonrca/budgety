@@ -65,7 +65,7 @@ var UIController = (function () {
             return {
                 type: document.querySelector(DOMStrings.inputType).value, // will be inc or exp
                 description: document.querySelector(DOMStrings.inputDesc).value,
-                value: document.querySelector(DOMStrings.inputValue).value,
+                value: parseFloat(document.querySelector(DOMStrings.inputValue).value),
             };
         },
         addListItem: function (obj, type) {
@@ -111,29 +111,36 @@ var controller = (function (budgetCtrl, UICtrl) {
         });
     };
 
+    var updateBudge = function () {
+        // 1. calc new budget
+        // 2. display budget
+        // 3. return budget in ui
+
+    };
 
     var ctrlAddItem = function () {
         // 1. get input data
         var input = UICtrl.getInput();
-        // console.log(input);
+        if (input.description !== "" && input.value > 0) {
+            // 2. add data to budget controller
+            var newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+            // console.log(newItem);
 
-        // 2. add data to budget controller
-        var newItem = budgetCtrl.addItem(input.type, input.description, input.value);
-        // console.log(newItem);
+            // 3. add new item to ui
+            UICtrl.addListItem(newItem, input.type);
 
-        // 3. add new item to ui
-        UICtrl.addListItem(newItem, input.type);
+            // clear the fields
+            UICtrl.clearFields();
 
-        // clear the fields
-        UICtrl.clearFields();
-
-        // 4. calc new budget
-
-        // 5. display budget in ui
-
+            // 4. calc new budget
+            // 5. display budget in ui
+            updateBudge();
+        }
         // to make public we return it in an obj
 
     };
+
+
     return {
         init: function () {
             console.log("starting app...");
